@@ -1,4 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map, retry } from 'rxjs/operators';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { URL_API } from './app.api';
@@ -20,7 +22,7 @@ export class OfertasService {
     getOfertaById(id: number): Promise<Oferta> {
         return this.http.get(`${URL_API}/ofertas?id=${ id }`)
         .toPromise()
-        .then((resp: any) => {
+        .then((resp: HttpResponse<any>) => {
             return resp[0];
         });
     }
@@ -28,7 +30,7 @@ export class OfertasService {
     getComoUsarOfertaById(id: number): Promise<string> {
         return this.http.get( `${ URL_API }/como-usar?id=${ id }`)
         .toPromise()
-        .then((resp: any) => {
+        .then((resp: HttpResponse<any>) => {
             return resp[0].descricao;
         });
     }
@@ -36,8 +38,13 @@ export class OfertasService {
     getOndeFicaOfertaById(id: number): Promise<string> {
         return this.http.get( `${ URL_API }/onde-fica?id=${ id }`)
         .toPromise()
-        .then((resp: any) => {
+        .then((resp: HttpResponse<any>) => {
             return resp[0].descricao;
         });
+    }
+
+    searchOffers(searchTerm: string): Observable<Oferta[]> {
+        return this.http.get(`${URL_API}/ofertas?descricao_oferta_like=${ searchTerm }`)
+        .pipe(retry(3), map((resp: Oferta[]) => resp));
     }
 }
