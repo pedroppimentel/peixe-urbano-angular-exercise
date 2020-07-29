@@ -1,7 +1,8 @@
-import { Observable } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { OfertasService } from '../ofertas.service';
 import { Oferta } from '../shared/oferta.model';
+import { switchMap, debounceTime, distinctUntilChanged, catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-topo',
@@ -12,19 +13,31 @@ import { Oferta } from '../shared/oferta.model';
 export class TopoComponent implements OnInit {
 
   offers: Observable<Oferta[]>;
+  offersList: Oferta[];
+  private subjectSearch: Subject<string> = new Subject<string>();
 
   constructor(private ofertasService: OfertasService) { }
 
   ngOnInit(): void {
+    this.offers = this.subjectSearch
+    .pipe(debounceTime(1000), distinctUntilChanged(), switchMap((term: string) => {
+      if ( term.trim() === '' ) {
+        return of<Oferta[]>([]);
+      }
+      return this.ofertasService.searchOffers(term);
+    }),
+    catchError((err: any) => {
+      console.log(err);
+      return of<Oferta[]>([]);
+    }))
+
+    this.offers.subscribe((offers: Oferta[]) => {
+      this.offersList = offers;
+    });
   }
 
   searchOffers(searchTerm: string): void {
-    this.ofertasService.searchOffers(searchTerm)
-    .subscribe(
-      (resp: Oferta[]) => console.log(resp),
-      (erro: any) => console.log('Status error: ', erro.status),
-      () => console.log('Events flow complete')
-    );
+    this.subjectSearch.next(searchTerm);
   }
 
 }

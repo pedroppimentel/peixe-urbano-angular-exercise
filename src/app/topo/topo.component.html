@@ -9,6 +9,9 @@
         </div>
         <div class="col-md-6">
           <input #searchOffersInput type="text" class="form-control" placeholder="Search offers" (keyup)="searchOffers(searchOffersInput.value)">
+          <ul class="list-group" style="position: absolute;">
+            <li class="list-group-item" *ngFor="let offer of offersList">{{ offer.titulo }}</li>
+          </ul>
         </div>
         <div class="col-md-2">
           <a a href="#"><img src="/assets/carrinho.png" /></a>
