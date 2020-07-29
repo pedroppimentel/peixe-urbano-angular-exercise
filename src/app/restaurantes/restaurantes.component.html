@@ -7,12 +7,12 @@
 
   <hr />
 
-  <div class="row" *ngFor="let oferta of ofertas">
+  <div class="row" *ngFor="let oferta of ofertas" style="padding-bottom: 15px;">
     <div class="col-md-4">
       <img [src]="oferta.imagens[0].url" class="img-fluid"/>
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-8" style="margin-top: 8px;">
       <div class="row">
         <h4>{{ oferta.titulo }}</h4>
       </div>
@@ -26,7 +26,7 @@
       </div>
 
       <div class="row">
-        <p>{{ oferta.valor }}</p>
+        <p>{{ oferta.valor | currency:'BRL':'symbol' }}</p>
       </div>
 
       <div class="row">
