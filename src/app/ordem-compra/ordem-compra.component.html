@@ -71,7 +71,7 @@
           <div class="form-group col-md-6">
             <input
             type="text"
-            class="form-control is-invalid"
+            class="form-control {{ endValFlag ? '' : (enderecoValido ? 'is-valid' : 'is-invalid') }}"
             placeholder="Endereço"
             autocomplete="off"
             minlength="5"
@@ -86,7 +86,7 @@
           <div class="form-group col-md-2">
             <input
             type="text"
-            class="form-control is-valid"
+            class="form-control {{ numValFlag ? '' : (numeroValido ? 'is-valid' : 'is-invalid') }}"
             placeholder="Número"
             autocomplete="off"
             minlength="1"
@@ -102,7 +102,7 @@
           <div class="form-group col-md-4">
             <input
             type="text"
-            class="form-control"
+            class="form-control {{ complementoValido ? 'is-valid' : '' }}"
             placeholder="Complemento"
             autocomplete="off"
             [value]="complemento"
@@ -121,11 +121,11 @@
             
           <div class="form-group col-md-3">
             <select
-            class="form-control is-invalid"
+            class="form-control {{ formaPagValFlag ? '' : (formaPagamentoValido ? 'is-valid' : 'is-invalid') }}"
             #selectFormaPagamento
             (change)="atualizaFormaPagamento(selectFormaPagamento.value)"
             >
-              <option value="">Selecione uma opção</option>
+              <option value="no-data">Selecione uma opção</option>
               <option value="dinheiro" selected="{{ formaPagamento === 'dinheiro' ? 'selected' : '' }}">Dinheiro</option>
               <option value="debito" selected="{{ formaPagamento === 'debito' ? 'selected' : '' }}">Débito</option>
             </select>
