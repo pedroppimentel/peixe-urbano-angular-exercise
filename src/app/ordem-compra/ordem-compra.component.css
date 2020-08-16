@@ -2,3 +2,31 @@
     margin-top: 50px;
     margin-bottom: 150px;
 }
+
+*:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25) !important;
+}
+
+input.ng-invalid.ng-touched {
+    border-color: red !important;
+}
+
+input.ng-invalid.ng-untouched {
+    border-color: #ced4da !important;
+}
+
+input.ng-valid.ng-touched {
+    border-color: green !important;
+}
+
+select.ng-invalid.ng-touched {
+    border-color: red !important;
+}
+
+select.ng-invalid.ng-untouched {
+    border-color: #ced4da !important;
+}
+
+select.ng-valid.ng-touched {
+    border-color: green !important;
+}
