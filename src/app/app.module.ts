@@ -20,6 +20,7 @@ import { registerLocaleData } from '@angular/common';
 import { ReducedDescription } from './util/reduced-description.pipe';
 import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
 import { OrdemCompraSucessoComponent } from './ordem-compra-sucesso/ordem-compra-sucesso.component';
+import { CarrinhoService } from './carrinho.service';
 
 registerLocaleData(localePt);
 
@@ -44,7 +45,7 @@ registerLocaleData(localePt);
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [ {provide: LOCALE_ID, useValue: 'pt-BR'} ],
+  providers: [ CarrinhoService, {provide: LOCALE_ID, useValue: 'pt-BR'} ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
