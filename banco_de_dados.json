@@ -185,5 +185,13 @@
       "descricao": "Estrada Maria das Graças, 12, Salvador - BA "
     }
   ],
-  "pedidos": []
+  "pedidos": [
+    {
+      "endereco": "asdasd",
+      "numero": "123123",
+      "complemento": "asd",
+      "formaPagamento": "debito",
+      "id": 1
+    }
+  ]
 }
