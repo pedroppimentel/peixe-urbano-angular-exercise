@@ -13,6 +13,7 @@ import { CarrinhoService } from '../carrinho.service';
 })
 export class OfertaComponent implements OnInit, OnDestroy {
   public oferta: Oferta;
+  public quantidade: number = 1;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,9 +29,18 @@ export class OfertaComponent implements OnInit, OnDestroy {
     });
   }
 
-  adicionarItemCarrinho(oferta: Oferta): void {
-    this.carrinhoService.incluirItem(this.oferta)
-    console.log(this.carrinhoService.exibirItens());
+  adicionarItemCarrinho(): void {
+    this.carrinhoService.incluirItem(this.oferta, this.quantidade)
+  }
+
+  adicionar(): void {
+    this.quantidade++;
+  }
+
+  diminuir(): void {
+    if (this.quantidade > 0) {
+      this.quantidade--;
+    }    
   }
 
   ngOnDestroy(): void {

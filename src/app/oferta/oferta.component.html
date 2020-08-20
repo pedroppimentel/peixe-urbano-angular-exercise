@@ -40,9 +40,20 @@
           </div>
         </div>
 
+        <div>
+          <div class="row">
+            <div class="col text-center">
+              Quantidade:
+              <button (click)="diminuir()" type="button" class="btn btn-link">-</button>
+              {{ quantidade }}
+              <button (click)="adicionar()" type="button" class="btn btn-link">+</button>
+            </div>
+          </div>
+        </div>
+
         <div class="row">
           <div class="col text-center">
-            <button type="button" class="btn btn-warning btn-lg" (click)="adicionarItemCarrinho(oferta)">Adicionar ao carrinho</button>
+            <button type="button" class="btn btn-warning btn-lg" (click)="adicionarItemCarrinho()">Adicionar ao carrinho</button>
           </div>
         </div>
 
