@@ -1,6 +1,8 @@
 Exercise from angular udemy course of Jorge Sant'Ana
 
-# App2
+Project name: Peixe Urbano
+
+# Plataforma e-commerce
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.3.
 
